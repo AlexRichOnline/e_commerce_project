@@ -48,6 +48,12 @@ def process_merchant(category_name, merchant)
     item_link = item_data[1].at_css('a').attribute('href').content
     item_cost = item_rows[1].at_css('td').content
 
+    if item_name.include?('TM')
+      tm_name = item_data[1].css('span')[1].content
+      item_name = "#{item_name} #{tm_name}"
+      item_link = item_data[1].css('a')[1].attribute('href').content
+    end
+
     next if item_name.downcase.include?('mail')
 
     item_page_html = open("#{bulbapedia_url}#{item_link}").read
@@ -56,15 +62,20 @@ def process_merchant(category_name, merchant)
     item_image_selector = "//table[@class='roundy'] " \
                           "//table[@class='roundy'] //img"
     item_description = item_page_doc.xpath(item_desc_selector)[0].content
+    img_index = 1
+    if item_name.include?('TM')
+      item_image_selector = "//div[@id='mw-content-text'] //table //img"
+      img_index = 0
+    end
 
-    item_large_image_img = item_page_doc.xpath(item_image_selector)[1]
+    item_large_image_img = item_page_doc.xpath(item_image_selector)[img_index]
     item_large_image = item_large_image_img.attribute('src')
-
     puts category_name
     print_item(item_name, item_cost, item_description, item_sprite, item_large_image)
+    puts "link to item page: #{item_link}"
 
     c = Category.find_by_name(category_name)
-    puts "Category below:"
+    puts 'Category below:'
     puts c.inspect
     new_item = c.items
                 .build(name: item_name,
