@@ -11,6 +11,9 @@ class ItemsController < ApplicationController
 
   def search_results
     @query = params[:query]
-    @items = Item.where('name LIKE ?', "%#{@query}%")
+    @search = Item.where('name LIKE ?', "%#{@query}%")
+                  .order(:name)
+    @items = @search.page(params[:page])
+    @items_count = @search.size
   end
 end
