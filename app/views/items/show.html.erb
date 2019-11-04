@@ -1,1 +1,3 @@
-<%= render @item %>
+<%= render partial: 'item',
+           object: @item,
+           locals: { name_is_link: false} %>

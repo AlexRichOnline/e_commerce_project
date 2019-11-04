@@ -1,5 +1,9 @@
 <div class="item">
-  <h4><%= item.name %> <%= image_tag item.sprit, alt: "#{item.name}_sprit" %></h4>
+  <% if name_is_link %>
+  <h4><%= link_to item.name, item %> <%= image_tag item.sprit, alt: "#{item.name}_sprit" %></h4>
+  <% else %>
+     <h4><%= item.name%> <%= image_tag item.sprit, alt: "#{item.name}_sprit" %></h4>
+  <% end %>
   <%= image_tag item.image, alt: "#{item.name}_image" %>
   <ul>
     <li><strong>Cost: </strong><%= item.price %></li>
