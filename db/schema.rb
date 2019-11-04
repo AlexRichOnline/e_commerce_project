@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_04_195546) do
+ActiveRecord::Schema.define(version: 2019_11_04_202425) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -37,6 +37,20 @@ ActiveRecord::Schema.define(version: 2019_11_04_195546) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "user_items", force: :cascade do |t|
+    t.integer "cart_qty"
+    t.decimal "gst"
+    t.decimal "pst"
+    t.decimal "sub_total"
+    t.string "purchase_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "order_id"
+    t.integer "item_id"
+    t.index ["item_id"], name: "index_user_items_on_item_id"
+    t.index ["order_id"], name: "index_user_items_on_order_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password"
@@ -46,4 +60,6 @@ ActiveRecord::Schema.define(version: 2019_11_04_195546) do
 
   add_foreign_key "items", "categories"
   add_foreign_key "orders", "users"
+  add_foreign_key "user_items", "items"
+  add_foreign_key "user_items", "orders"
 end

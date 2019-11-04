@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cart_qty: 
+  gst: 9.99
+  pst: 9.99
+  sub_total: 9.99
+  purchase_date: MyString
+
+two:
+  cart_qty: 
+  gst: 9.99
+  pst: 9.99
+  sub_total: 9.99
+  purchase_date: MyString
