@@ -1,1 +1,7 @@
-Search Results go here
+<p>Your search for '<%= @query %>' returned <%= pluralize(@items.size, 'result') %>.</p>
+
+<div class="columns is-multiline">
+  <%= render partial: 'item',
+            collection: @items,
+            locals: {name_is_link: true} %>
+</div>
