@@ -1,7 +1,7 @@
 <h3 class="title is-4">All Items</h3>
-
 <div class="columns is-multiline">
   <%= render partial: 'items/item',
             collection: @items,
             locals: {name_is_link: true} %>
 </div>
+<%= paginate @items %>

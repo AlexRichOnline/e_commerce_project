@@ -1,2 +1,7 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<h2 class="title is-3">Available Items at: <%= @category.name %></h2>
+
+<div class="columns is-multiline">
+  <%= render partial: 'items/item',
+            collection: @category.items,
+            locals: {name_is_link: true} %>
+</div>
