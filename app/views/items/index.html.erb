@@ -1,5 +1,7 @@
-<h1>All Items</h1>
+<h3 class="title is-4">All Items</h3>
 
-<%= render partial: 'items/item',
-           collection: @items,
-           locals: {name_is_link: true} %>
+<div class="columns is-multiline">
+  <%= render partial: 'items/item',
+            collection: @items,
+            locals: {name_is_link: true} %>
+</div>

@@ -1,13 +1,27 @@
-<div class="item">
-  <% if name_is_link %>
-  <h4><%= link_to item.name, item %> <%= image_tag item.sprit, alt: "#{item.name}_sprit" %></h4>
-  <% else %>
-     <h4><%= item.name%> <%= image_tag item.sprit, alt: "#{item.name}_sprit" %></h4>
-  <% end %>
-  <%= image_tag item.image, alt: "#{item.name}_image" %>
-  <ul>
-    <li><strong>Cost: </strong><%= item.price %></li>
-    <li><strong>Description</strong><%= item.description %></li>
-    <li><strong>Store Location: </strong><%= link_to item.category.name, item.category %></li>
-  </ul>
+<div class="column is-one-quarter">
+  <div class="item card">
+    <div class="card-content">
+      <p class="title is-3">
+        <% if name_is_link %>
+        <%= link_to item.name, item %> <%= image_tag item.sprit, alt: "#{item.name}_sprit" %>
+        <% else %>
+          <%= item.name%> <%= image_tag item.sprit, alt: "#{item.name}_sprit" %>
+        <% end %>
+      </p>
+      <div class="media">
+        <div class="media-left">
+          <figure class="image is-48x48">
+            <%= image_tag item.image, alt: "#{item.name}_image" %>
+          </figure>
+          <div class="media-content">
+            <p class="title is-4"><strong>Cost: </strong><%= item.price %></p>
+            <p class="subtitle is-6"><strong>Store Location: </strong><%= link_to item.category.name, item.category %></p>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <strong>Description: </strong><%= item.description %>
+      </div>
+    </div>
+  </div>
 </div>
