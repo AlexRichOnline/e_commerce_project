@@ -9,4 +9,7 @@ class Item < ApplicationRecord
             :description,
             :image,
             :sprit, presence: true
+
+  has_many :orders
+  has_many :users, through: :orders
 end

@@ -13,7 +13,9 @@
           <figure class="image is-48x48">
             <%= image_tag item.image, alt: "#{item.name}_image" %>
           </figure>
+          <br>
           <div class="media-content">
+            <br>
             <p class="title is-4"><strong>Cost: </strong><%= item.price %></p>
             <p class="subtitle is-6"><strong>Store Location: </strong><%= link_to item.category.name, item.category %></p>
           </div>
