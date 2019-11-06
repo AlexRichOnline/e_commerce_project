@@ -106,4 +106,4 @@ end
 
 # div with id of mw-content-text
 # contains all content of page including tables
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+AdminUser.create!(email: 'snake@bigboss.com', password: 'solid_snake', password_confirmation: 'solid_snake') if Rails.env.development?
