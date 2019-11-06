@@ -1,13 +1,13 @@
 <div class="column is-one-quarter">
   <div class="item card">
     <div class="card-content">
-      <p class="title is-3">
+      <h2 class="title is-3">
         <% if name_is_link %>
           <%= link_to item.name, item %> <%= image_tag item.sprit, alt: "#{item.name}_sprit" %>
         <% else %>
-          <%= item.name%> <%= image_tag item.sprit, alt: "#{item.name}_sprit" %>
+          <%= item.name %> <%= image_tag item.sprit, alt: "#{item.name}_sprit" %>
         <% end %>
-      </p>
+      </h2>
       <div class="media">
         <div class="media-left">
           <figure class="image is-48x48">

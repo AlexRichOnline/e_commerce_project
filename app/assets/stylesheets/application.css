@@ -27,6 +27,10 @@
   color: #EE6B2F;
  }
 
+ .item .card-content .title{
+  color: #30A7D7;
+ }
+
  .pagination a{
    color: white;
  }
