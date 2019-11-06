@@ -11,32 +11,7 @@
   </head>
 
   <body>
-  <section class="section">
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-          <h1 class="title"><%= link_to 'PokeMarketplace', root_path , class: 'navbar-item'%></h1>
-      </div>
-      <div class="navbar-start">
-        <%= link_to 'Shop by Department Floor', categories_path , class: 'navbar-item'%>
-      </div>
-    </nav>
-
-    <%= form_with(url:  search_results_items_path , method: "get", local: true) do %>
-      <%= label_tag(:query, "Search for:") %>
-      <%= text_field_tag(:query) %>
-      <%= label_tag(:floors, "Filter by store floor:" ) %>
-      <% floors = Category.all %>
-      <select name="floors">
-        <option value="all">All Floors</option>
-        <% floors[1..-1].each do |floor| %>
-          <option value="<%= floor.name %>"><%= floor.name %></option>
-        <% end %>
-      </select>
-      <%= submit_tag("Search") %>
-    <% end %>
-    </section>
-
-    <section class="section">
+      <section class="section">
       <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <a class="navbar-item" href="https://bulma.io">
@@ -97,6 +72,32 @@
     </div>
   </div>
 </nav>
+
+  <section class="section">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+          <h1 class="title"><%= link_to 'PokeMarketplace', root_path , class: 'navbar-item'%></h1>
+      </div>
+      <div class="navbar-start">
+        <%= link_to 'Shop by Department Floor', categories_path , class: 'navbar-item'%>
+      </div>
+    </nav>
+
+    <%= form_with(url:  search_results_items_path , method: "get", local: true) do %>
+      <%= label_tag(:query, "Search for:") %>
+      <%= text_field_tag(:query) %>
+      <%= label_tag(:floors, "Filter by store floor:" ) %>
+      <% floors = Category.all %>
+
+      <select name="floors">
+        <option value="all">All Floors</option>
+        <% floors[1..-1].each do |floor| %>
+          <option value="<%= floor.name %>"><%= floor.name %></option>
+        <% end %>
+      </select>
+      <%= submit_tag("Search") %>
+    <% end %>
+    </section>
       <%= yield %>
     </section>
   </body>

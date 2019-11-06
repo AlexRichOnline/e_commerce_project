@@ -13,3 +13,28 @@
  *= require_tree .
  *= require_self
  */
+
+ body{
+   background-color: #30A7D7;
+ }
+
+ a, a:visited, a:hover{
+   text-decoration: none;
+   color: #EE6B2F;
+ }
+
+ .class a, .card-content a{
+  color: #EE6B2F;
+ }
+
+ .pagination a{
+   color: white;
+ }
+
+ol li .button.is-link{
+   color: white;
+   background-color: #EE6B2F;
+ }
+
+
+
