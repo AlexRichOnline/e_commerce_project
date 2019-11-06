@@ -3,7 +3,7 @@
     <div class="card-content">
       <p class="title is-3">
         <% if name_is_link %>
-        <%= link_to item.name, item %> <%= image_tag item.sprit, alt: "#{item.name}_sprit" %>
+          <%= link_to item.name, item %> <%= image_tag item.sprit, alt: "#{item.name}_sprit" %>
         <% else %>
           <%= item.name%> <%= image_tag item.sprit, alt: "#{item.name}_sprit" %>
         <% end %>
