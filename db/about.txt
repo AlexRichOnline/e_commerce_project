@@ -1,0 +1,1 @@
+Welcome to the Goldenrod Department Store's E-PokeMarketplace! This web application is a replication of the Goldenrod Department Store from the Pokemon games. The store has several floors that have different shops that you can buy items from. This site allows users to browse all of the available items in one location! Wow.

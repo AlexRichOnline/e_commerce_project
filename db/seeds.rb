@@ -10,8 +10,18 @@
 
 require 'open-uri'
 
+Page.destroy_all
+UserItem.destroy_all
+Order.destroy_all
+User.destroy_all
 Item.destroy_all
 Category.destroy_all
+
+about_file = File.read(Rails.root + 'db/about.txt')
+
+Page.create(title: 'About Us',
+            content: about_file.to_s,
+            permalink: 'about_us')
 
 bulbapedia_url = 'https://bulbapedia.bulbagarden.net'
 bulbapedia_goldenrod_url = bulbapedia_url + '/wiki/Goldenrod_Department_Store'
