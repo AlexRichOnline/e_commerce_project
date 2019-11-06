@@ -10,9 +10,17 @@ class ItemsController < ApplicationController
   end
 
   def search_results
+    @category = 'none selected'
     @query = params[:query]
-    @search = Item.where('name LIKE ?', "%#{@query}%")
-                  .order(:name)
+    @floors = params[:floors]
+    @search = if @floors == 'all'
+                Item.where('name LIKE ?', "%#{@query}%")
+                    .order(:name)
+              else
+                category = Category.find_by_name(params[:floors])
+                category.items.where('name LIKE ?', "%#{@query}%")
+                        .order(:name)
+              end
     @items = @search.page(params[:page])
     @items_count = @search.size
   end

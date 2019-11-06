@@ -1,5 +1,6 @@
 <p>Your search for '<%= @query %>' returned <%= pluralize(@items_count, 'result') %>.</p>
-
+<p>The category: <%= @floors %></p>
+<p>they picked: <%= @category %></p>
 <div class="columns is-multiline">
   <%= render partial: 'item',
             collection: @items,

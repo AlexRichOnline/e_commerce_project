@@ -12,7 +12,6 @@
 
   <body>
   <section class="section">
-
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
           <h1 class="title"><%= link_to 'PokeMarketplace', root_path , class: 'navbar-item'%></h1>
@@ -22,25 +21,34 @@
       </div>
     </nav>
 
-      <%= form_with(url:  search_results_items_path , method: "get", local: true) do %>
-        <%= label_tag(:query, "Search for:") %>
-        <%= text_field_tag(:query) %>
-        <%= submit_tag("Search") %>
-      <% end %>
+    <%= form_with(url:  search_results_items_path , method: "get", local: true) do %>
+      <%= label_tag(:query, "Search for:") %>
+      <%= text_field_tag(:query) %>
+      <%= label_tag(:floors, "Filter by store floor:" ) %>
+      <% floors = Category.all %>
+      <select name="floors">
+        <option value="all">All Floors</option>
+        <% floors[1..-1].each do |floor| %>
+          <option value="<%= floor.name %>"><%= floor.name %></option>
+        <% end %>
+      </select>
+      <%= submit_tag("Search") %>
+    <% end %>
     </section>
-    <section class="section">
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
-      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
-    </a>
 
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
+    <section class="section">
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="https://bulma.io">
+            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+          </a>
+
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+       </a>
+      </div>
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
