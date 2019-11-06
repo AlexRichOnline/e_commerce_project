@@ -85,25 +85,23 @@
     </nav>
 
     <%= form_with(url:  search_results_items_path , method: "get", local: true) do %>
-      <%= label_tag(:query, "Search for:") %>
-      <%= text_field_tag(:query, '', class: 'input is-rounded') %>
-      <%= label_tag(:floors, "Filter by store floor:" ) %>
-      <% floors = Category.all %>
-      <div class="dropdown is-active">
-        <div class="dropdown-trigger">
-          <span>Dropdown button</span>
-          <span class="icon is-small"></span>
-        <div class="dropdown-menu" id="dropdown-menu" role="menu">
-          <select name="floors">
-            <option value="all">All Floors</option>
-            <% floors[1..-1].each do |floor| %>
-              <option value="<%= floor.name %>"><%= floor.name %></option>
-            <% end %>
-          </select>
-        </div>
+      <%= label_tag(:query, "Search:", class: 'label') %>
+      <%= text_field_tag(:query, '', class: 'input is-rounded', placeholder: 'Poke-Search') %>
+      <div class="field">
+        <%= label_tag(:floors, "Filter by store floor:" , class: 'label') %>
+        <% floors = Category.all %>
+        <div class="control">
+          <div class="select">
+            <select name="floors">
+              <option value="all">All Floors</option>
+              <% floors[1..-1].each do |floor| %>
+                <option value="<%= floor.name %>"><%= floor.name %></option>
+              <% end %>
+            </select>
+          </div>
         </div>
       </div>
-      <%= submit_tag("Search") %>
+      <%= submit_tag("Search", class: 'button is-link') %>
     <% end %>
     </section>
       <%= yield %>
