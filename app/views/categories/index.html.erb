@@ -4,7 +4,7 @@
 <ol class="is-upper-roman">
 <% @categories.each do |category| %>
   <% if category.name == "1F Service Counter" %>
-    <li><%= category.name %></li>
+    <li><%= link_to category.name, about_us_path, class: 'button is-link' %></li>
   <% else %>
     <li><%= link_to category.name, category, class: 'button is-link' %></li>
   <% end %>

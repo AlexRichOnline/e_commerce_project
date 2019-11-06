@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
   get 'pages/:permalink', to: 'pages#permalink', as: 'permalink'
+  get 'pages/about_us', to: 'pages#permalink', as: 'about_us'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :categories, only: %i[index show]
