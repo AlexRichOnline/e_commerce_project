@@ -31,6 +31,11 @@
    color: white;
  }
 
+ .pagination span{
+   color: #E6BC2F;
+   font-size: 20px;
+ }
+
 ol li .button.is-link{
    color: white;
    background-color: #EE6B2F;
