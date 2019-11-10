@@ -83,7 +83,7 @@
         <%= link_to 'Service Counter', about_us_path , class: 'navbar-item'%>
       </div>
     </nav>
-
+    </section>
     <%= form_with(url:  search_results_items_path , method: "get", local: true) do %>
       <%= label_tag(:query, "Search:", class: 'label') %>
       <%= text_field_tag(:query, '', class: 'input is-rounded', placeholder: 'Poke-Search') %>
@@ -103,7 +103,6 @@
       </div>
       <%= submit_tag("Search", class: 'button is-link') %>
     <% end %>
-    </section>
       <%= yield %>
     </section>
   </body>

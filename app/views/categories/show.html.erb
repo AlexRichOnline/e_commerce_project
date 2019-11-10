@@ -1,7 +1,9 @@
-<h2 class="title is-3">Available Items at: <%= @category.name %></h2>
+<section class="section">
+  <h2 class="title is-3">Available Items at: <%= @category.name %></h2>
 
-<div class="columns is-multiline">
-  <%= render partial: 'items/item',
-            collection: @category.items,
-            locals: {name_is_link: true} %>
-</div>
+  <div class="columns is-multiline">
+    <%= render partial: 'items/item',
+              collection: @category.items,
+              locals: {name_is_link: true} %>
+  </div>
+</section>

@@ -23,6 +23,10 @@
    color: #EE6B2F;
  }
 
+ a:hover, .title a:hover, p a:hover{
+   color: #30A7D7;
+ }
+
  .class a, .card-content a{
   color: #EE6B2F;
  }
@@ -47,6 +51,10 @@ ol li .button.is-link{
 
  .section .title{
    color: white;
+ }
+
+ form .section .navbar .field button{
+   background-color:white;
  }
 
 
