@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_10_194334) do
+ActiveRecord::Schema.define(version: 2019_11_11_042433) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -92,6 +92,14 @@ ActiveRecord::Schema.define(version: 2019_11_10_194334) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "provinces", force: :cascade do |t|
+    t.string "code"
+    t.string "name"
+    t.decimal "total_tax"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "user_items", force: :cascade do |t|
     t.integer "cart_qty"
     t.decimal "gst"
@@ -115,7 +123,9 @@ ActiveRecord::Schema.define(version: 2019_11_10_194334) do
     t.string "encrypted_password", limit: 128
     t.string "confirmation_token", limit: 128
     t.string "remember_token", limit: 128
+    t.integer "province_id"
     t.index ["email"], name: "index_users_on_email"
+    t.index ["province_id"], name: "index_users_on_province_id"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end
 
@@ -124,4 +134,5 @@ ActiveRecord::Schema.define(version: 2019_11_10_194334) do
   add_foreign_key "orders", "users"
   add_foreign_key "user_items", "items"
   add_foreign_key "user_items", "orders"
+  add_foreign_key "users", "provinces"
 end
