@@ -11,6 +11,7 @@
 require 'open-uri'
 require 'json'
 
+Province.destroy_all
 # Page.destroy_all
 # UserItem.destroy_all
 # Order.destroy_all
@@ -39,6 +40,11 @@ provinces.each do |key, value|
     total_tax += tax['tax']
   end
   puts total_tax
+
+  Province.create(code: key,
+                  name: value['name'],
+                  total_tax: total_tax)
+  puts Province.count
 end
 
 # bulbapedia_url = 'https://bulbapedia.bulbagarden.net'
