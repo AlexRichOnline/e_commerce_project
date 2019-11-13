@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>ECommerceProject</title>
     <%= csrf_meta_tags %>
@@ -9,7 +9,6 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
   </head>
-
   <body>
   <section class="section">
     <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -33,11 +32,25 @@
               <% end %>
             </div>
           </div>
-          </div>
-         </div>
         </div>
       </div>
     </nav>
+    <div class="modal">
+      <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Modal title</p>
+            <button class="delete" aria-label="close"></button>
+          </header>
+          <section class="modal-card-body">
+            ...
+          </section>
+          <footer class="modal-card-foot">
+            <button class="button is-success">Save changes</button>
+            <button class="button">Cancel</button>
+          </footer>
+        </div>
+    </div>
     <br>
     <%= form_with(url:  search_results_items_path , method: "get", local: true) do %>
       <%= label_tag(:query, "Search:", class: 'label') %>

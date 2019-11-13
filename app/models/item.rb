@@ -13,4 +13,8 @@ class Item < ApplicationRecord
   has_many :orders
   has_many :users, through: :orders
   has_one_attached :upload
+
+  def thumbnail
+    upload.variant(resize: '12x12').processed
+  end
 end

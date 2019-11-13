@@ -27,7 +27,7 @@
    color: #30A7D7;
  }
 
- .class a, .card-content a{
+ .class a, .card-content a, .navbar-start a, footer a{
   color: #EE6B2F;
  }
 
@@ -64,6 +64,10 @@ ol li .button.is-link{
 
  .item{
   border-radius: 20px;
+ }
+
+ .item .card-content{
+   padding: 10px;
  }
 
 
