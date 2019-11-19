@@ -25,7 +25,7 @@ ActiveAdmin.register Item do
     end
     column :category_id
     column :upload do |item|
-      image_tag item.upload, alt: "#{item.name}_upload" if item.upload.present?
+      image_tag item.icon, alt: "#{item.name}_upload" if item.upload.present?
     end
   end
 end

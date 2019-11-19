@@ -10,9 +10,15 @@
       </h2>
       <div class="media">
         <div class="media-left">
-          <figure class="image is-48x48">
-            <%= image_tag item.image, alt: "#{item.name}_image" %>
+          <% if item.upload.present? %>
+            <figure class="image">
+            <%= image_tag item.icon, alt: "#{item.name}_image" %>
           </figure>
+          <% else %>
+            <figure class="image is-48x48">
+              <%= image_tag item.image, alt: "#{item.name}_image" %>
+            </figure>
+          <% end %>
           <br>
           <br>
           <div class="media-content">

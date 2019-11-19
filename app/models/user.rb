@@ -1,7 +1,5 @@
 class User < ApplicationRecord
-  include Clearance::User
-
-  validates :email, :password, presence: true
+  validates :username, :password, presence: true
   validates :username, uniqueness: true
 
   has_many :orders
