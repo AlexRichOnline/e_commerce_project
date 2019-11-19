@@ -25,10 +25,10 @@
             <div class="buttons">
               <% if signed_in? %>
                 <%= link_to current_user.email, root_path, class: 'button is-light' %>
-                <%= link_to 'Sign out', sign_out_path, method: :delete, class: 'button is-primary' %>
+                <%= link_to 'Sign out', log_out_path, method: :delete, class: 'button is-primary' %>
               <% else %>
-                <%= link_to 'Log in', sign_in_path, class: 'button is-light' %>
-                <%= link_to 'Sign up', sign_up_path, class: 'button is-primary' %>
+                <%= link_to 'Log in', log_in_path, class: 'button is-light' %>
+                <%= link_to 'Sign up', register_path, class: 'button is-primary' %>
               <% end %>
             </div>
           </div>
