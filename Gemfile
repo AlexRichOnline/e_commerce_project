@@ -31,7 +31,6 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'activeadmin'
-gem 'clearance'
 gem 'devise'
 gem 'kaminari'
 
