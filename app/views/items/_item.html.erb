@@ -3,9 +3,9 @@
     <div class="card-content">
       <h2 class="title is-3">
         <% if name_is_link %>
-          <%= link_to item.name, item %> <%= image_tag item.sprit, alt: "#{item.name}_sprit" %>
+          <%= link_to item.name, item %>
         <% else %>
-          <%= item.name %> <%= image_tag item.sprit, alt: "#{item.name}_sprit" %>
+          <%= item.name %>
         <% end %>
       </h2>
       <div class="media">
@@ -31,7 +31,12 @@
       </div>
       <div class="content">
         <strong>Description: </strong><%= item.description %>
-        <%= link_to 'Add to Cart', add_item_path(item.name), method: :post %>
+        <br>
+        <br>
+        <p class="title is-3">
+          <%= link_to 'Add to Cart', add_item_path(item.name), method: :post, class: 'button is-rounded is-light' %>
+          <%= image_tag item.sprit, alt: "#{item.name}_sprit" %>
+        </p>
       </div>
     </div>
   </div>
