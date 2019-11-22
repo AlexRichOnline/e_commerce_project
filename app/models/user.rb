@@ -1,8 +1,9 @@
-class User < ApplicationRecord
-  validates :username, :password, presence: true
-  validates :username, uniqueness: true
+# frozen_string_literal: true
 
-  has_many :orders
-  has_many :items, through: :orders
+class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
   belongs_to :province
 end

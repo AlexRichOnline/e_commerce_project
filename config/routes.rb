@@ -1,19 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :passwords, controller: 'clearance/passwords', only: %i[create new]
-  resource :session, controller: 'clearance/sessions', only: [:create]
-
-  resources :users, controller: 'clearance/users', only: [:create] do
-    resource :password,
-             controller: 'clearance/passwords',
-             only: %i[create edit update]
-  end
-
-  get '/log_in' => 'clearance/sessions#new', as: 'log_in'
-  delete '/log_out' => 'clearance/sessions#destroy', as: 'log_out'
-  get '/register' => 'clearance/users#new', as: 'register'
-
+  devise_for :users
   get 'pages/:permalink', to: 'pages#permalink', as: 'permalink'
   get 'pages/about_us', to: 'pages#permalink', as: 'about_us'
 
@@ -26,6 +14,8 @@ Rails.application.routes.draw do
       get 'search_results'
     end
   end
+
+  post 'add_item/:name', to: 'store#add_item_to_cart', as: 'add_item'
 
   root to: 'items#index'
   # will it blend...

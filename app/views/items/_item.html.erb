@@ -31,6 +31,7 @@
       </div>
       <div class="content">
         <strong>Description: </strong><%= item.description %>
+        <%= link_to 'Add to Cart', add_item_path(item.name), method: :post %>
       </div>
     </div>
   </div>
