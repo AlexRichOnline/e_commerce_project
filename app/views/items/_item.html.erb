@@ -34,8 +34,13 @@
         <br>
         <br>
         <p class="title is-3">
-          <%= link_to 'Add to Cart', add_item_path(item.name), method: :post, class: 'button is-rounded is-light' %>
-          <%= image_tag item.sprit, alt: "#{item.name}_sprit" %>
+          <% unless item_in_cart?(item) %>
+            <%= link_to 'Add to Bag', add_item_path(item.name), method: :post, class: 'button is-rounded is-light' %>
+            <%= image_tag item.sprit, alt: "#{item.name}_sprit" %>
+          <% else %>
+            <%= link_to "Add Another #{item.name} to Bag", add_item_path(item.name), method: :post, class: 'button is-rounded is-info' %>
+            <%= image_tag item.sprit, alt: "#{item.name}_sprit" %>
+          <% end %>
         </p>
       </div>
     </div>

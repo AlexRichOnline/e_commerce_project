@@ -18,9 +18,13 @@
    background-color: #30A7D7;
  }
 
- a, a:visited, a:hover{
+ a, a:visited, a:hover, #remove:hover{
    text-decoration: none;
    color: #EE6B2F;
+ }
+
+ #remove:hover{
+   background-color: white;
  }
 
  a:hover, .title a:hover, p a:hover{
@@ -39,7 +43,7 @@
    color: white;
  }
 
- .pagination span{
+ .pagination span, details a{
    color: #E6BC2F;
    font-size: 20px;
  }
@@ -69,5 +73,3 @@ ol li .button.is-link{
  .item .card-content{
    padding: 10px;
  }
-
-

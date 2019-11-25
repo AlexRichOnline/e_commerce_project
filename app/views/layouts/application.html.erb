@@ -50,15 +50,26 @@
       </div>
       <%= submit_tag("Search", class: 'button is-dark is-rounded') %>
     <% end %>
-
-    <% if session[:cart] %>
-    <ul>
-    <% session[:cart].each do |item| %>
-      <li><%= item %></li>
-    <% end %>
-    </ul>
-    <% end %>
-      <%= yield %>
+    <br>
+    <details class="content">
+      <Summary class="title is-3">Trainer Bag</Summary>
+      <% unless session[:cart].empty? %>
+        <ul>
+          <% session[:cart].each do |hash| %>
+            <li class="title is-4">
+              <%= hash['item'] %> - qty: <%= hash['qty'] %> -
+              <%= link_to 'Remove from Cart',
+                          remove_item_path(hash['item']),
+                          method: :delete,
+                          id: 'remove'%>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No item's in bag</p>
+      <% end %>
+    </details>
+    <%= yield %>
     </section>
     <footer class="footer">
       <div class="content has-text-centered">
