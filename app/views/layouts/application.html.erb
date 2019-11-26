@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://js.stripe.com/v3/"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
@@ -26,7 +27,7 @@
             <strong><%= link_to current_user.email.split('@').first, edit_user_registration_path , class: 'button is-light is-rounded' %></strong>
             <strong><%= link_to 'Log out', destroy_user_session_path, class: 'button is-dark is-rounded', method: :delete %></strong>
           <% else %>
-          <strong><%= link_to 'Sign up', new_user_registration_path, class: 'button is-primary is-rounded' %></strong>
+          <strong><%= link_to 'Sign up', new_user_registration_path, class: 'button is-info is-rounded' %></strong>
           <strong><%= link_to 'Log in', user_session_path, class: 'button is-light is-rounded'%></strong>
           <% end %>
         </div>
@@ -51,24 +52,29 @@
       <%= submit_tag("Search", class: 'button is-dark is-rounded') %>
     <% end %>
     <br>
-    <details class="content">
-      <Summary class="title is-3">Trainer Bag</Summary>
-      <% unless session[:cart].empty? %>
-        <ul>
-          <% session[:cart].each do |hash| %>
-            <li class="title is-4">
-              <%= hash['item'] %> - qty: <%= hash['qty'] %> -
-              <%= link_to 'Remove from Cart',
-                          remove_item_path(hash['item']),
-                          method: :delete,
-                          id: 'remove'%>
-            </li>
-          <% end %>
-        </ul>
-      <% else %>
-        <p>No item's in bag</p>
-      <% end %>
-    </details>
+    <% if signed_in? %>
+      <details class="content">
+        <Summary class="title is-3">Trainer Bag</Summary>
+        <% unless session[:cart].empty? %>
+          <ul>
+            <% session[:cart].each do |hash| %>
+              <li class="title is-4">
+                <%= hash['item'] %> - qty: <%= hash['qty'] %> -
+                <%= link_to 'Remove from Cart',
+                            remove_item_path(hash['item']),
+                            method: :delete,
+                            id: 'remove'%>
+              </li>
+            <% end %>
+            <%= link_to 'Proceed to Checkout',
+                        checkout_proceed_path,
+                        class: 'button is-dark' %>
+          </ul>
+        <% else %>
+          <p>No item's in bag</p>
+        <% end %>
+      </details>
+    <% end %>
     <%= yield %>
     </section>
     <footer class="footer">

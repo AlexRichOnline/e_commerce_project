@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  scope '/checkout' do
+    post 'create', to: 'checkout#create', as: 'checkout_create'
+    get 'cancel', to: 'checkout#cancel', as: 'checkout_cancel'
+    get 'success', to: 'checkout#success', as: 'checkout_success'
+    get 'proceed', to: 'checkout#proceed', as: 'checkout_proceed'
+  end
+
   devise_for :users
   get 'pages/:permalink', to: 'pages#permalink', as: 'permalink'
   get 'pages/about_us', to: 'pages#permalink', as: 'about_us'
