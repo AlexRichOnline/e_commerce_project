@@ -10,8 +10,8 @@ class Item < ApplicationRecord
             :image,
             :sprit, presence: true
 
-  has_many :orders
-  has_many :users, through: :orders
+  has_many :user_items
+  has_many :orders, through: :user_items
   has_one_attached :upload
 
   def thumbnail

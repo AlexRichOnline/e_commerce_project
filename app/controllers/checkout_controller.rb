@@ -5,6 +5,7 @@ class CheckoutController < ApplicationController
     items = params[:items]
     total = params[:total]
     quantities = params[:quantities]
+    @subtotal = params[:subtotal]
 
     if total.nil?
       redirect_to root_path
@@ -28,7 +29,21 @@ class CheckoutController < ApplicationController
     end
   end
 
-  def success; end
+  def success
+    order = Order.create(user: current_user)
+    # province = current_user.province
+    # purchase_date = Time.now.strftime('%m/%d/%Y')
+
+    # session[:cart].each do |entry|
+    #   item = Item.find_by_name(entry['item'])
+    #   qty = entry['qty']
+    #   order.user_items.create(item: item,
+    #                           item_qty: qty,
+    #                           total_tax: province.total_tax,
+    #                           item_price: item.price,
+    #                           purchase_date: purchase_date)
+    # end
+  end
 
   def cancel; end
 

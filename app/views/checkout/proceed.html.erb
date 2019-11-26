@@ -42,5 +42,6 @@
                class: 'button is-link is-rounded',
                params: { items: items.map {|item| item.name}.join(" - "),
                          total: (total.round(2) * 100).to_i,
+                         subtotal: subtotal,
                          quantities: quantities},
                remote: true %>
