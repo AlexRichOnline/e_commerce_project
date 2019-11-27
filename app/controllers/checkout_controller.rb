@@ -30,19 +30,20 @@ class CheckoutController < ApplicationController
   end
 
   def success
-    order = Order.create(user: current_user)
-    # province = current_user.province
-    # purchase_date = Time.now.strftime('%m/%d/%Y')
+    @order = Order.create(user: current_user)
+    province = current_user.province
+    purchase_date = Time.now.strftime('%m/%d/%Y')
 
-    # session[:cart].each do |entry|
-    #   item = Item.find_by_name(entry['item'])
-    #   qty = entry['qty']
-    #   order.user_items.create(item: item,
-    #                           item_qty: qty,
-    #                           total_tax: province.total_tax,
-    #                           item_price: item.price,
-    #                           purchase_date: purchase_date)
-    # end
+    session[:cart].each do |entry|
+      item = Item.find_by_name(entry['item'])
+      qty = entry['qty']
+      @order.user_items.create(item: item,
+                              item_qty: qty,
+                              total_tax: province.total_tax,
+                              item_price: item.price,
+                              purchase_date: purchase_date)
+    end
+    session[:cart] = []
   end
 
   def cancel; end

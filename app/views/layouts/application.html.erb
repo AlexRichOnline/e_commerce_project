@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>ECommerceProject</title>
     <%= csrf_meta_tags %>
@@ -12,33 +12,38 @@
   </head>
   <body>
     <section class="section">
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-          <h1 class="title"><%= link_to 'PokeMarketplace', root_path , class: 'navbar-item'%></h1>
-      </div>
-      <div class="navbar-start">
-        <%= link_to 'Shop by Department Floor', categories_path , class: 'navbar-item'%>
-        <%= link_to 'Service Counter', about_us_path , class: 'navbar-item'%>
-      </div>
-      <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <% if user_signed_in? %>
-            <strong><%= link_to current_user.email.split('@').first, edit_user_registration_path , class: 'button is-light is-rounded' %></strong>
-            <strong><%= link_to 'Log out', destroy_user_session_path, class: 'button is-dark is-rounded', method: :delete %></strong>
-          <% else %>
-          <strong><%= link_to 'Sign up', new_user_registration_path, class: 'button is-info is-rounded' %></strong>
-          <strong><%= link_to 'Log in', user_session_path, class: 'button is-light is-rounded'%></strong>
+    <h2 class="title is-1">Welcome Trainers</h2>
+      <nav class="navbar title is-4" aria-label="main navigation">
+        <div class="navbar-brand">
+            <h2 class="title is-2"><%= link_to 'PokeMarketplace', root_path , class: 'navbar-item' %></h2>
+        </div>
+        <div class="navbar-start">
+          <%= link_to 'Shop by Department Floor', categories_path , class: 'navbar-item'%>
+          <%= link_to 'Service Counter', about_us_path , class: 'navbar-item'%>
+          <% if signed_in? %>
+            <%= link_to 'My Orders', orders_path, class: 'navbar-item' %>
           <% end %>
         </div>
+        <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <% if user_signed_in? %>
+              <strong><%= link_to current_user.email.split('@').first, edit_user_registration_path , class: 'button is-light is-rounded' %></strong>
+              <strong><%= link_to 'Log out', destroy_user_session_path, class: 'button is-dark is-rounded', method: :delete %></strong>
+            <% else %>
+            <strong><%= link_to 'Sign up', new_user_registration_path, class: 'button is-info is-rounded' %></strong>
+            <strong><%= link_to 'Log in', user_session_path, class: 'button is-light is-rounded'%></strong>
+            <% end %>
+          </div>
+        </div>
       </div>
-    </div>
-    </nav>
+      </nav>
     <%= form_with(url:  search_results_items_path , method: "get", local: true) do %>
       <%= label_tag(:query, "Search:", class: 'label') %>
       <%= text_field_tag(:query, '', class: 'input is-rounded', placeholder: 'Poke-Search') %>
+      <br>
+      <br>
       <div class="field">
-        <%= label_tag(:floors, "Filter by store floor:" , class: 'label') %>
         <% floors = Category.all %>
           <div class="select">
             <select name="floors">
@@ -52,28 +57,30 @@
       <%= submit_tag("Search", class: 'button is-dark is-rounded') %>
     <% end %>
     <br>
-    <% if signed_in? %>
-      <details class="content">
-        <Summary class="title is-3">Trainer Bag</Summary>
-        <% unless session[:cart].empty? %>
-          <ul>
-            <% session[:cart].each do |hash| %>
-              <li class="title is-4">
-                <%= hash['item'] %> - qty: <%= hash['qty'] %> -
-                <%= link_to 'Remove from Cart',
-                            remove_item_path(hash['item']),
-                            method: :delete,
-                            id: 'remove'%>
-              </li>
-            <% end %>
-            <%= link_to 'Proceed to Checkout',
-                        checkout_proceed_path,
-                        class: 'button is-dark' %>
-          </ul>
-        <% else %>
-          <p>No item's in bag</p>
-        <% end %>
-      </details>
+    <% if session[:cart] %>
+      <% if signed_in? %>
+        <details class="content">
+          <Summary class="title is-3">Trainer Bag</Summary>
+          <% unless session[:cart].empty? %>
+            <ul>
+              <% session[:cart].each do |hash| %>
+                <li class="title is-4">
+                  <%= hash['item'] %> - qty: <%= hash['qty'] %> -
+                  <%= link_to 'Remove from Cart',
+                              remove_item_path(hash['item']),
+                              method: :delete,
+                              id: 'remove'%>
+                </li>
+              <% end %>
+              <li><%= link_to 'Proceed to Checkout',
+                          checkout_proceed_path,
+                          class: 'button is-dark' %></li>
+            </ul>
+          <% else %>
+            <p>No item's in bag</p>
+          <% end %>
+        </details>
+      <% end %>
     <% end %>
     <%= yield %>
     </section>

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
+  resources :orders, only: %i[index show]
   resources :categories, only: %i[index show]
   resources :items, only: %i[index show] do
     collection do

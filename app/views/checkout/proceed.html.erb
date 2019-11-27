@@ -1,47 +1,49 @@
-<h2 class="title is-3">Checkout: Are you sure?</h2>
+<section class="section">
+  <h2 class="title is-3">Checkout: Are you sure?</h2>
 
-<table class="table">
-  <tr>
-    <th>Item</th>
-    <th>Price</th>
-    <th>Quantity</th>
-  </tr>
-  <% subtotal = 0 %>
-  <% total = 0 %>
-  <% quantities = 0 %>
-  <% items = [] %>
-  <% session[:cart].each do |item| %>
-    <% item_details = Item.find_by_name(item['item']) %>
-    <% items << item_details %>
+  <table class="table">
     <tr>
-    <td><%= item_details.name %></td>
-    <% price = item_details.price / 100 %>
-    <td><%= item_details.price.to_i %> </td>
-    <td>x<%= item['qty'] %></td>
-  </tr>
-  <% quantities += item['qty'] %>
-  <% subtotal += price * item['qty'] %>
-  <% end %>
-  <% total += subtotal * (1 + current_user.province.total_tax) %>
-  <tr>
-    <th>Province</th>
-    <th>Total Tax Rate</th>
-    <th>Subtotal</th>
-    <th>Total</th>
-  <tr>
-  <tr>
-    <td><%= current_user.province.code %></td>
-    <td><%= current_user.province.total_tax * 100 %>%</td>
-    <td><%= number_to_currency(subtotal) %></td>
-    <td><%= number_to_currency(total) %></td>
-  <tr>
-</table>
-<%= button_to 'Confirm Purchase',
-               checkout_create_path,
-               method: :post,
-               class: 'button is-link is-rounded',
-               params: { items: items.map {|item| item.name}.join(" - "),
-                         total: (total.round(2) * 100).to_i,
-                         subtotal: subtotal,
-                         quantities: quantities},
-               remote: true %>
+      <th>Item</th>
+      <th>Price</th>
+      <th>Quantity</th>
+    </tr>
+    <% subtotal = 0 %>
+    <% total = 0 %>
+    <% quantities = 0 %>
+    <% items = [] %>
+    <% session[:cart].each do |item| %>
+      <% item_details = Item.find_by_name(item['item']) %>
+      <% items << item_details %>
+      <tr>
+      <td><%= item_details.name %></td>
+      <% price = item_details.price / 100 %>
+      <td><%= number_to_currency(price) %> </td>
+      <td>x<%= item['qty'] %></td>
+    </tr>
+    <% quantities += item['qty'] %>
+    <% subtotal += price * item['qty'] %>
+    <% end %>
+    <% total += subtotal * (1 + current_user.province.total_tax) %>
+    <tr>
+      <th>Province</th>
+      <th>Total Tax Rate</th>
+      <th>Subtotal</th>
+      <th>Total</th>
+    <tr>
+    <tr>
+      <td><%= current_user.province.code %></td>
+      <td><%= current_user.province.total_tax * 100 %>%</td>
+      <td><%= number_to_currency(subtotal) %></td>
+      <td><%= number_to_currency(total) %></td>
+    <tr>
+  </table>
+  <%= button_to 'Confirm Purchase',
+                checkout_create_path,
+                method: :post,
+                class: 'button is-link is-rounded',
+                params: { items: items.map {|item| item.name}.join(" - "),
+                          total: (total.round(2) * 100).to_i,
+                          subtotal: subtotal,
+                          quantities: quantities},
+                remote: true %>
+</section>

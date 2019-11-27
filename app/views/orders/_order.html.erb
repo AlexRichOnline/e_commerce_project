@@ -1,0 +1,38 @@
+<div class="card">
+    <header class="card-header">
+      <p class="card-header-title">
+      <% if name_is_link %>
+          <%= link_to "Order# #{order.id}", order %>
+          - <%= order.created_at.strftime('%d/%m/%Y') %>
+        <% else %>
+          Order# <%= order.id  %>
+          - <%= order.created_at.strftime('%d/%m/%Y') %>
+        <% end %>
+      </p>
+    </header>
+    <div class="card-content">
+      <div class="content">
+      <% subtotal = 0 %>
+      <strong>Item{s}</strong>
+        <ul>
+          <% order.user_items.each do |ua| %>
+          <% subtotal += (ua.item_price / 100) * ua.item_qty %>
+            <li>
+              <%= ua.item_qty %>x
+              <%= ua.item.name %>-
+              <%= number_to_currency(ua.item_price / 100) %>
+              </li>
+          <% end %>
+        </ul>
+        <% total = subtotal * (1 + order.user_items.first.total_tax ) %>
+        <p>
+          <%= order.user.province.name %> tax rate:
+          <%= order.user.province.total_tax * 100 %>%
+        </p>
+        <p>
+          Order Total: <%= number_to_currency(total) %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <br>

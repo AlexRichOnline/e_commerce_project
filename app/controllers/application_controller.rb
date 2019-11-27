@@ -5,12 +5,14 @@ class ApplicationController < ActionController::Base
 
   def item_in_cart?(item)
     item_exists = false
-    session[:cart].each do |entry|
-      next unless entry['item'] == item.name
+    if session[:cart]
+      session[:cart].each do |entry|
+        next unless entry['item'] == item.name
 
-      item_exists = true
+        item_exists = true
+      end
+      item_exists
     end
-    item_exists
   end
   helper_method :item_in_cart?
 

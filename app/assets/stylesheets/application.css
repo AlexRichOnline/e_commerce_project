@@ -73,3 +73,7 @@ ol li .button.is-link{
  .item .card-content{
    padding: 10px;
  }
+
+ .column .item .card-image figure{
+   margin: auto;
+ }

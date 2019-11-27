@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register UserItem do
-  permit_params :cart_qty, :gst, :pst, :sub_total, :purchase_date, :order_id, :item_id
+  permit_params :item_qty, :item_price, :total_tax, :purchase_date, :order_id, :item_id
 end
