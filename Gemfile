@@ -33,6 +33,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'activeadmin'
 gem 'devise'
 gem 'kaminari'
+gem 'semantic-ui-sass'
 gem 'stripe'
 
 group :development, :test do

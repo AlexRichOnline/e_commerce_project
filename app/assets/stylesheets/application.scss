@@ -1,0 +1,94 @@
+$font-url: 'https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet';
+@import "semantic-ui";
+
+$white: #F5F5F5;
+$red: #E3350D;
+$orange: #EE6B2F;
+$yellow: #E6BC2F;
+$green: #4DAD5B;
+$blue: #30A7D7;
+$main-color: $blue;
+
+%margin {
+  margin: auto;
+}
+
+@mixin rounded-corners($raidus) {
+  border: solid 10px darken($main-color, 10%);
+  border-radius: $raidus;
+  padding: 5px;
+}
+
+ body{
+   font-family: $font-url;
+   background-color: $main-color;
+
+   .section .title{
+      color: $white;
+   }
+ }
+
+ .container {
+   width: 100%;
+ }
+
+ #header{
+  @include rounded-corners(10px);
+  width: 100% / 5;
+ }
+
+ .breadcrumb ul li a {
+  color: $white;
+}
+
+ a, a:visited, a:hover, #remove:hover{
+   text-decoration: none;
+   color: $orange;
+ }
+
+ #remove:hover{
+   background-color: $white;
+ }
+
+ a:hover, .title a:hover, p a:hover{
+   color: $blue;
+ }
+
+.card-content a, footer a{
+  color: $orange;
+ }
+
+ .pagination a{
+   color: $white;
+
+   span, details a{
+    color: $yellow;
+    font-size: 20px;
+  }
+ }
+
+ol li .button.is-link{
+   color: $white;
+   background-color: $orange;
+ }
+
+ .item {
+  @include rounded-corners(50px);
+
+  .card-image figure {
+    @extend %margin;
+  }
+}
+
+#main_image {
+  margin-bottom: 30px;
+}
+
+.card-content {
+  padding: 10px;
+
+  .title{
+    color: $blue;
+  }
+}
+
