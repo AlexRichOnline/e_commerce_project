@@ -2,10 +2,11 @@
   <div class="item card">
   <br>
     <div class="card-image">
+    <div id="main_image">
       <% if item.upload.present? %>
         <figure class="image">
-        <%= image_tag item.icon, alt: "#{item.name}_image" %>
-      </figure>
+          <%= image_tag item.icon, alt: "#{item.name}_image" %>
+        </figure>
       <% elsif %>
         <% item.name.include?('TM') %>
           <figure class="image">
@@ -16,6 +17,7 @@
             <%= image_tag item.image, alt: "#{item.name}_image" %>
           </figure>
       <% end %>
+      </div>
     </div>
     <div class="card-content">
       <div class="media">

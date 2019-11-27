@@ -75,5 +75,15 @@ ol li .button.is-link{
  }
 
  .column .item .card-image figure{
-   margin: auto;
+  margin: auto;
  }
+
+ .column .item .card-image #main_image{
+   margin-bottom: 30px;
+ }
+
+ .breadcrumb ul li a{
+   color: white;
+ }
+
+

@@ -12,21 +12,7 @@
   </head>
   <body>
     <section class="section">
-    <h2 class="title is-1">Welcome Trainers</h2>
-      <nav class="navbar title is-4" aria-label="main navigation">
-        <div class="navbar-brand">
-            <h2 class="title is-2"><%= link_to 'PokeMarketplace', root_path , class: 'navbar-item' %></h2>
-        </div>
-        <div class="navbar-start">
-          <%= link_to 'Shop by Department Floor', categories_path , class: 'navbar-item'%>
-          <%= link_to 'Service Counter', about_us_path , class: 'navbar-item'%>
-          <% if signed_in? %>
-            <%= link_to 'My Orders', orders_path, class: 'navbar-item' %>
-          <% end %>
-        </div>
-        <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
+    <h2 class="title is-3">Welcome Trainers
             <% if user_signed_in? %>
               <strong><%= link_to current_user.email.split('@').first, edit_user_registration_path , class: 'button is-light is-rounded' %></strong>
               <strong><%= link_to 'Log out', destroy_user_session_path, class: 'button is-dark is-rounded', method: :delete %></strong>
@@ -34,10 +20,7 @@
             <strong><%= link_to 'Sign up', new_user_registration_path, class: 'button is-info is-rounded' %></strong>
             <strong><%= link_to 'Log in', user_session_path, class: 'button is-light is-rounded'%></strong>
             <% end %>
-          </div>
-        </div>
-      </div>
-      </nav>
+    </h2>
     <%= form_with(url:  search_results_items_path , method: "get", local: true) do %>
       <%= label_tag(:query, "Search:", class: 'label') %>
       <%= text_field_tag(:query, '', class: 'input is-rounded', placeholder: 'Poke-Search') %>

@@ -7,10 +7,7 @@ class CheckoutController < ApplicationController
     quantities = params[:quantities]
     @subtotal = params[:subtotal]
 
-    if total.nil?
-      redirect_to root_path
-      return
-    end
+    empty_cart_warning
 
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
@@ -30,6 +27,7 @@ class CheckoutController < ApplicationController
   end
 
   def success
+    empty_cart_warning
     @order = Order.create(user: current_user)
     province = current_user.province
     purchase_date = Time.now.strftime('%m/%d/%Y')
@@ -38,15 +36,27 @@ class CheckoutController < ApplicationController
       item = Item.find_by_name(entry['item'])
       qty = entry['qty']
       @order.user_items.create(item: item,
-                              item_qty: qty,
-                              total_tax: province.total_tax,
-                              item_price: item.price,
-                              purchase_date: purchase_date)
+                               item_qty: qty,
+                               total_tax: province.total_tax,
+                               item_price: item.price,
+                               purchase_date: purchase_date)
     end
     session[:cart] = []
   end
 
   def cancel; end
 
-  def proceed; end
+  def proceed
+    empty_cart_warning
+  end
+
+  private
+
+  def empty_cart_warning
+    if session[:cart].empty?
+      flash[:alert] = 'You must have something in your bag ' \
+                      'before you can checkout'
+      redirect_to root_path
+    end
+  end
 end

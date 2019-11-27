@@ -1,5 +1,34 @@
-<section class="section">
-<h2 class="title is-3">Great Success! We have processed your order</h2>
+<nav class="breadcrumb is-centered is-medium has-arrow-separator" aria-label="breadcrumbs">
+  <ul>
+    <li>
+      <%= link_to 'Shop by Department Floor', categories_path %>
+    </li>
+    <li>
+      <%= link_to 'PokeMarketplace', root_path %>
+    </li>
+    <li>
+      <%= link_to 'Search Results', '#' %>
+    </li>
+    <li>
+      <% offset = rand(Item.count) %>
+      <%= link_to 'Item', Item.offset(offset).first %>
+    </li>
+    <% if signed_in? %>
+      <li>
+        <%= link_to 'Checkout', checkout_proceed_path %>
+      </li>
+      <li class="is-active">
+        <%= link_to 'Checkout Complete', '#' %>
+      </li>
+      <li>
+        <%= link_to 'My Orders', orders_path  %>
+      </li>
+    <% end %>
+  </ul>
+</nav>
 
-<%= link_to 'View Order', @order , class: 'button is-dark'%>
+<section class="section">
+  <h2 class="title is-3">Great Success! We have processed your order</h2>
+
+  <%= link_to 'View Order', @order , class: 'button is-dark'%>
 </section>

@@ -1,5 +1,31 @@
-<section class="section">
-<h2 class="title is-3"><%= @page.title %></h2>
+<nav class="breadcrumb is-centered is-medium has-arrow-separator" aria-label="breadcrumbs">
+  <ul>
+    <li>
+      <%= link_to 'Shop by Department Floor', categories_path %>
+    </li>
+    <li class="is-active">
+      <%= link_to 'Service Counter', '#' %>
+    </li>
+    <li>
+      <%= link_to 'PokeMarketplace', root_path %>
+    </li>
+    <li>
+      <% offset = rand(Item.count) %>
+      <%= link_to 'Item', Item.offset(offset).first %>
+    </li>
+    <% if signed_in? %>
+      <li>
+        <%= link_to 'Checkout', checkout_proceed_path %>
+      </li>
+      <li>
+        <%= link_to 'My Orders', orders_path  %>
+      </li>
+    <% end %>
+  </ul>
+</nav>
 
-<p class="content is-medium"><%= @page.content %></p>
-</section>
+<section class="section">
+  <h2 class="title is-3"><%= @page.title %></h2>
+
+  <p class="content is-medium"><%= @page.content %></p>
+  </section>

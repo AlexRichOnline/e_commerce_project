@@ -18,6 +18,8 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  helper_method :get_random_item
+
   def configure_permitted_parameters
     devise_parameter_sanitizer
       .permit(:sign_up, keys: %i[email password province_id])

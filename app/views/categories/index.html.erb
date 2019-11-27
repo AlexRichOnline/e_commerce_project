@@ -1,15 +1,38 @@
-<section class="section">
-<h2 class="title is-4">Goldenrod Department Store - Floors</h2>
+<nav class="breadcrumb is-centered is-medium has-arrow-separator" aria-label="breadcrumbs">
+  <ul>
+    <li class="is-active">
+      <%= link_to 'Shop by Department Floor', categories_path %>
+    </li>
+    <li>
+      <%= link_to 'PokeMarketplace', root_path %>
+    </li>
+    <li>
+      <% offset = rand(Item.count) %>
+      <%= link_to 'Item', Item.offset(offset).first %>
+    </li>
+    <% if signed_in? %>
+      <li>
+        <%= link_to 'Checkout', checkout_proceed_path %>
+      </li>
+      <li>
+        <%= link_to 'My Orders', orders_path  %>
+      </li>
+    <% end %>
+  </ul>
+</nav>
 
-<div class="content">
-<ol class="is-upper-roman">
-<% @categories.each do |category| %>
-  <% if category.name == "1F Service Counter" %>
-    <li><%= link_to category.name, about_us_path, class: 'button is-link' %></li>
-  <% else %>
-    <li><%= link_to category.name, category, class: 'button is-link' %></li>
+<section class="section">
+  <h2 class="title is-4">Goldenrod Department Store - Floors</h2>
+
+  <div class="content">
+  <ol class="is-upper-roman">
+  <% @categories.each do |category| %>
+    <% if category.name == "1F Service Counter" %>
+      <li><%= link_to category.name, about_us_path, class: 'button is-link' %></li>
+    <% else %>
+      <li><%= link_to category.name, category, class: 'button is-link' %></li>
+    <% end %>
   <% end %>
-<% end %>
-</ol>
-</div>
+  </ol>
+  </div>
 </section>
