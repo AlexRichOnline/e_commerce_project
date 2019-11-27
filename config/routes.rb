@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   end
 
   post 'items/add_item/:name', to: 'store#add_to_cart', as: 'add_item'
+  post 'items/update_qty/:name', to: 'store#update_qty', as: 'update_qty'
   delete 'items/remove_from_cart/:name', to: 'store#remove_from_cart', as: 'remove_item'
 
   root to: 'items#index'

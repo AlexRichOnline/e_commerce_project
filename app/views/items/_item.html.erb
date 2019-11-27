@@ -1,8 +1,8 @@
-<div class="column is-one-quarter-desktop is-full-mobile is-one-quarter-tablet ">
+<div class="column is-one-quarter">
   <div class="item card">
   <br>
     <div class="card-image">
-    <div id="main_image_<%= item.id %>">
+    <div class="main_image">
       <% if item.upload.present? %>
         <figure class="image">
           <%= image_tag item.icon, alt: "#{item.name}_image" %>

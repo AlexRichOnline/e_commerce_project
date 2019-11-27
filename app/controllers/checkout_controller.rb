@@ -2,12 +2,11 @@
 
 class CheckoutController < ApplicationController
   def create
+    checkout_integrity
     items = params[:items]
     total = params[:total]
     quantities = params[:quantities]
     @subtotal = params[:subtotal]
-
-    empty_cart_warning
 
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
@@ -27,7 +26,7 @@ class CheckoutController < ApplicationController
   end
 
   def success
-    empty_cart_warning
+    checkout_integrity
     @order = Order.create(user: current_user)
     province = current_user.province
     purchase_date = Time.now.strftime('%m/%d/%Y')
@@ -47,16 +46,22 @@ class CheckoutController < ApplicationController
   def cancel; end
 
   def proceed
-    empty_cart_warning
+    checkout_integrity
   end
 
   private
 
-  def empty_cart_warning
-    if session[:cart].empty?
+  def checkout_integrity
+    redirect_required = false
+    if user_signed_in? == false
+      redirect_required = true
+      flash[:alert] = 'You must be signed in to checkout'
+    elsif session[:cart].nil?
+      redirect_required = true
       flash[:alert] = 'You must have something in your bag ' \
                       'before you can checkout'
-      redirect_to root_path
     end
+
+    redirect_to root_path if redirect_required
   end
 end

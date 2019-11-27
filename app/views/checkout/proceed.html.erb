@@ -21,8 +21,7 @@
   </ul>
 </nav>
 
-<section class="section">
-  <h2 class="title is-3">Checkout: Are you sure?</h2>
+<h2 class="title is-4">Checkout: Are you sure?</h2>
 
   <table class="table">
     <tr>
@@ -51,14 +50,16 @@
       <th>Province</th>
       <th>Total Tax Rate</th>
       <th>Subtotal</th>
-      <th>Total</th>
     <tr>
     <tr>
       <td><%= current_user.province.code %></td>
       <td><%= current_user.province.total_tax * 100 %>%</td>
       <td><%= number_to_currency(subtotal) %></td>
-      <td><%= number_to_currency(total) %></td>
     <tr>
+    <tr>
+      <th>Total</th>
+      <td><%= number_to_currency(total) %></td>
+    </td>
   </table>
   <%= button_to 'Confirm Purchase',
                 checkout_create_path,
@@ -69,4 +70,3 @@
                           subtotal: subtotal,
                           quantities: quantities},
                 remote: true %>
-</section>

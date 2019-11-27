@@ -35,6 +35,11 @@ $main-color: $blue;
  #header{
   @include rounded-corners(10px);
   width: 100% / 5;
+  margin-bottom: 20px;
+ }
+
+ .navbar-end {
+   margin-bottom:20px;
  }
 
  .breadcrumb ul li a {
@@ -78,9 +83,13 @@ ol li .button.is-link{
   .card-image figure {
     @extend %margin;
   }
+
+  .media-content .title {
+    color: $blue;
+  }
 }
 
-#main_image {
+.main_image {
   margin-bottom: 30px;
 }
 
@@ -91,4 +100,3 @@ ol li .button.is-link{
     color: $blue;
   }
 }
-

@@ -27,6 +27,16 @@ class StoreController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def update_qty
+    session[:cart].each do |entry|
+      next unless entry['item'] == params[:name]
+
+      entry['qty'] = params[:qty]
+    end
+
+    redirect_back(fallback_location: root_path)
+  end
+
   def initialize_session
     session[:cart] ||= []
   end

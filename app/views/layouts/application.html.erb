@@ -43,8 +43,8 @@
       <%= submit_tag("Search", class: 'button is-dark is-rounded') %>
     <% end %>
     <br>
-    <% if session[:cart] %>
-      <% if signed_in? %>
+    <% if signed_in? %>
+      <% if session[:cart] %>
         <details class="content">
           <Summary class="title is-3">Trainer Bag</Summary>
           <% unless session[:cart].empty? %>
@@ -56,6 +56,15 @@
                               remove_item_path(hash['item']),
                               method: :delete,
                               id: "remove_#{hash['item'].parameterize.underscore}"%>
+                  <p>
+                    <%= number_field_tag 'quantity', class: 'input'%>
+                    <%= button_to 'Update Quantity',
+                        update_qty_path(hash['item']),
+                        method: :post,
+                        class: 'button is-link is-rounded',
+                        params: {name: hash['item'], qty: ''}
+                        %>
+                  </p>
                 </li>
               <% end %>
               <li><%= link_to 'Proceed to Checkout',
