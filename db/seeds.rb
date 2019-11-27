@@ -41,7 +41,7 @@ end
 
 bulbapedia_url = 'https://bulbapedia.bulbagarden.net'
 bulbapedia_goldenrod_url = bulbapedia_url + '/wiki/Goldenrod_Department_Store'
-bulbpedia_goldenrod_html = uri.parse(bulbapedia_goldenrod_url).open.read
+bulbpedia_goldenrod_html = open(bulbapedia_goldenrod_url).read
 bulbapedia_goldenrod_doc = Nokogiri::HTML(bulbpedia_goldenrod_html)
 merchant_selector = "//div[@id='mw-content-text'] " \
                     "//div[@class='thumb tright']/following-sibling::table " \
@@ -82,7 +82,7 @@ def process_merchant(category_name, merchant)
 
     next if item_name.downcase.include?('mail')
 
-    item_page_html = uri.parse("#{bulbapedia_url}#{item_link}").open.read
+    item_page_html = open("#{bulbapedia_url}#{item_link}").read
     item_page_doc = Nokogiri::HTML(item_page_html)
     item_desc_selector = "//div[@id='mw-content-text'] //p"
     item_image_selector = "//table[@class='roundy'] " \
