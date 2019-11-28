@@ -27,13 +27,22 @@ class StoreController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
-  def update_qty
+  def increment_item
     session[:cart].each do |entry|
       next unless entry['item'] == params[:name]
 
-      entry['qty'] = params[:qty]
+      entry['qty'] += 1
     end
+    redirect_back(fallback_location: root_path)
+  end
 
+  def decrement_item
+    session[:cart].each do |entry|
+      next unless entry['item'] == params[:name]
+
+      entry['qty'] -= 1
+      entry['qty'] = 1 if entry['qty'] <= 0
+    end
     redirect_back(fallback_location: root_path)
   end
 

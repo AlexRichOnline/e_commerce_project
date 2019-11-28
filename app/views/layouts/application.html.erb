@@ -13,7 +13,7 @@
   <body>
     <section id="container" class="section">
       <div class="navbar-start">
-        <h2 id="header" class="title is-2">Welcome Trainers</h2>
+        <h2 id="header" class="title is-2">Goldenrod Department Online</h2>
       </div>
       <div class="navbar-end">
         <% if user_signed_in? %>
@@ -51,20 +51,17 @@
             <ul>
               <% session[:cart].each do |hash| %>
                 <li class="title is-4">
-                  <%= hash['item'] %> - qty: <%= hash['qty'] %> -
+                <h2 class="title is-5"><%= hash['item'] %> - qty: <%= hash['qty'] %></h2>
+                <div class="level-left">
                   <%= link_to 'Remove from Cart',
                               remove_item_path(hash['item']),
                               method: :delete,
-                              id: "remove_#{hash['item'].parameterize.underscore}"%>
-                  <p>
-                    <%= number_field_tag 'quantity', class: 'input'%>
-                    <%= button_to 'Update Quantity',
-                        update_qty_path(hash['item']),
-                        method: :post,
-                        class: 'button is-link is-rounded',
-                        params: {name: hash['item'], qty: ''}
-                        %>
-                  </p>
+                              id: "remove_#{hash['item'].parameterize.underscore}",
+                              class: 'button is-dark'%>
+
+                      <%= button_to "+#{hash['item']}", increment_item_path(hash['item']), method: :post, class: 'button is-success'%>
+                      <%= button_to "-#{hash['item']}", decrement_item_path(hash['item']), method: :post, class: 'button is-danger'%>
+                  </div>
                 </li>
               <% end %>
               <li><%= link_to 'Proceed to Checkout',

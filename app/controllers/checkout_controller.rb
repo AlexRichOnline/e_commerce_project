@@ -53,10 +53,10 @@ class CheckoutController < ApplicationController
 
   def checkout_integrity
     redirect_required = false
-    if user_signed_in? == false
+    if current_user.nil?
       redirect_required = true
       flash[:alert] = 'You must be signed in to checkout'
-    elsif session[:cart].nil?
+    elsif session[:cart].empty?
       redirect_required = true
       flash[:alert] = 'You must have something in your bag ' \
                       'before you can checkout'
