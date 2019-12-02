@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
 
   def search_results
     @category = 'none selected'
-    @query = params[:query]
+    @query = params[:query].downcase
     @floors = params[:floors]
     @search = if @floors == 'all'
                 Item.where('name LIKE ?', "%#{@query}%")
